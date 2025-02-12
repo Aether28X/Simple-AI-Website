@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #4f46e5;
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --bot-bg: #1e293b;
+    --user-bg: #334155;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-color), #1e293b) !important;
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-align: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 2rem;
+}
+
+.chat-container {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.message {
+    max-width: 70%;
+    padding: 1rem 1.5rem;
+    border-radius: 1.5rem;
+    animation: messageAppear 0.3s ease-out;
+}
+
+.bot-message {
+    background: var(--bot-bg);
+    align-self: flex-start;
+    border-bottom-left-radius: 0.25rem;
+}
+
+.user-message {
+    background: var(--user-bg);
+    align-self: flex-end;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.message-input {
+    flex: 1;
+    padding: 1.25rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.message-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.send-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99,102,241,0.3);
+}
+
+.typing-indicator {
+    display: none;
+    padding: 1rem;
+    background: var(--bot-bg);
+    border-radius: 1.5rem;
+    align-self: flex-start;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--text-color);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    0%, 40%, 100% { transform: translateY(0); }
+    20% { transform: translateY(-5px); }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .message {
+        max-width: 85%;
+    }
+}
